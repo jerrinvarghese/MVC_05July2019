@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h3>Employee Data</h3>
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>User Id</th>
+            <th>User Email</th>
+            <th>User Password</th>
+            <th>Is Active</th>
+            <th>Last Login</th>
+            <th>Login Attempts</th>
+            <th>Is Locked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var users in ViewBag.Items)
+        {
+            <tr>
+                <td>@users.UserID</td>
+                <td>@users.UserEmail</td>
+                <td>@users.UserPassword</td>
+                <td>@users.IsActive</td>
+                <td>@users.LastLogin</td>
+                <td>@users.LoginAttempts</td>
+                <td>@users.IsLocked</td>
+            </tr>
+        }
+    </tbody>
+</table>  

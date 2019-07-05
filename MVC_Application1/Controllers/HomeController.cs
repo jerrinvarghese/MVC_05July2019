@@ -16,7 +16,9 @@ namespace MVC_Application1.Controllers
         {
             ItemRepository loginData = new ItemRepository();
             List<tbl_Login> lst = loginData.getLoginTableData();
-            return View();
+            ViewBag.Items = lst;
+            //ViewBag.Count = lst.Count;
+            return View("Index", ViewBag);
         }
     }
 }
