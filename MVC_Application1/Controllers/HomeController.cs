@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using MVC_Application1.Models;
 
 namespace MVC_Application1.Controllers
 {
@@ -20,5 +21,26 @@ namespace MVC_Application1.Controllers
             //ViewBag.Count = lst.Count;
             return View("Index", ViewBag);
         }
+        public ActionResult angularJSExample()
+        {
+            return View();
+        }
+
+
+        public ActionResult VerifyUser(UserModel obj)
+        {
+            DbForLearningEntities context = new DbForLearningEntities();
+            var user = context.tbl_Login.Where(x => x.UserEmail.Equals(obj.Email) && x.UserPassword.Equals(obj.Password)).FirstOrDefault();
+            return new JsonResult
+            {
+                Data = user,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public ActionResult LoginPage1()
+        {
+            return View();
+        } 
     }
+
 }

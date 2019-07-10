@@ -14,5 +14,7 @@ namespace DAL.Repository
             List<tbl_Login> loginList = context.tbl_Login.ToList();
             return (loginList);
         }
+
+        
     }
 }
