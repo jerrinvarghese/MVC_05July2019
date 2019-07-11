@@ -8,25 +8,31 @@
 <head>
     <title>Tutorial App</title>
     <script src="~/scripts/Angular.min.js"></script>
+    <script src="~/scripts/Angular-route.min.js"></script>
     <script src="~/scripts/app.js"></script>
     <script src="~/scripts/LoginController.js"></script>
+    
     
 </head>
 <body ng-controller="TutorialCtrl">
     Number: {{2+2}}
     <h1>{{tutorialObject.MainTitle}}</h1><br />
     <h2>{{tutorialObject.SubTitle}}</h2><br />
-    Binding: {{tutorialObject.BindOutput}}<br />
+    Binding: {{tutorialObject.BindOutput | currency:"#":"4"}}<br />
 
-    First Name: {{tutorialObject.FirstName}} <br />
+    First Name: {{tutorialObject.FirstName | uppercase}} <br />
     Last Name:{{tutorialObject.LastName}}<br />
     <button ng-click="MultiplyByTwo()">Multiply</button><br />
 
-    First Name: <input type="text" ng-model="tutorialObject.FirstName" /><br />
-    Last Name: <input type="text" ng-model="tutorialObject.LastName" /><br />
+    First Name: <input type="text" ng-model="tutorialObject.FirstName | uppercase" /><br />
+    Last Name: <input type="text" ng-model="tutorialObject.LastName | lowercase" /><br />
 
- 
-</body>
+    <span new-welcome-message></span>
+    <new-welcome-message></new-welcome-message>
+
+    {{tutorialObject.NewCalculatedValue}}
+
+    </body>
 
 </html>
 

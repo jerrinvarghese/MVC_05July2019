@@ -98,7 +98,7 @@
 
 angular.module("tutorialAppControlModule", [])
 
-.controller("TutorialCtrl", ["$scope", function ($scope) {
+.controller("TutorialCtrl", ["$scope", "Calculations", function ($scope, Calculations) {
     $scope.tutorialObject = {};
     $scope.tutorialObject.MainTitle = "Main Title";
     $scope.tutorialObject.SubTitle = "Sub Title";
@@ -106,17 +106,31 @@ angular.module("tutorialAppControlModule", [])
     $scope.tutorialObject.FirstName = "Thomas";
     $scope.tutorialObject.LastName = "Mark";
 
-
+    $scope.tutorialObject.BindOutput = 2;
     $scope.MultiplyByTwo = function () {
-        $scope.tutorialObject.BindOutput *= 2;
+        $scope.tutorialObject.BindOutput = Calculations.MultiplyByTwo($scope.tutorialObject.BindOutput)
     }
+    $scope.tutorialObject.NewCalculatedValue= Calculations.newCalculation(2, 4);
 }])
 
-.directive('newWelcomeMessage', function () {
+.directive("newWelcomeMessage", function () {
     return {
-        restrict: 'EA',
-        template: '<div>Hi, This is the new welcome message</div>'
+        restrict: "EA",
+        template: "<div>Hi This is the new welcome message hello</div>"
+    }
+})
+
+.factory("Calculations", function () {
+    var calculations = {};
+
+    calculations.MultiplyByTwo = function (a) {
+        return a * 2;
     };
+    calculations.newCalculation = function (a, b) {
+        return (a + b);
+        };
+    
+    return calculations;
 });
 
    
