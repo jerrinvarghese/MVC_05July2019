@@ -168,6 +168,7 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\angularJSExample.cshtml" />
     <Content Include="Views\Home\LoginPage1.cshtml" />
+    <Content Include="Views\Home\ngRouteView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

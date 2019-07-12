@@ -41,6 +41,11 @@ namespace MVC_Application1.Controllers
         {
             return View();
         } 
+
+        public ActionResult ngRouteView()
+        {
+            return View();
+        }
     }
 
 }
