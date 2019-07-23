@@ -171,6 +171,8 @@
     <Content Include="Views\Home\LoginPage1.cshtml" />
     <Content Include="Views\Home\ngRouteView.cshtml" />
     <Content Include="Views\Account\LoginPage.cshtml" />
+    <Content Include="Views\Account\RegisterPage.cshtml" />
+    <Content Include="Views\Account\HomePage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
