@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "DisplayLoginData";
+}
+
+<h2>DisplayLoginData</h2>
+
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>User Id</th>
+            <th>User Password</th>
+            <th>Is Active</th>
+            <th>Last Login</th>
+            <th>Is Locked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var users in ViewBag.loginDataListItems)
+        {
+            <tr>
+                <td>@users.UserID</td>
+                <td>@users.UserPassword</td>
+                <td>@users.IsActive</td>
+                <td>@users.LastLogin</td>
+                <td>@users.IsLocked</td>
+            </tr>
+        }
+    </tbody>
+</table>  

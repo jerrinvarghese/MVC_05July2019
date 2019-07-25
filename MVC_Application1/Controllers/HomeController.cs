@@ -46,6 +46,13 @@ namespace MVC_Application1.Controllers
         {
             return View();
         }
+
+        public ActionResult DisplayLoginData()
+        {
+            ItemRepository loginDataList = new ItemRepository();
+            ViewBag.loginDataListItems= loginDataList.getLoginTableDataForDisplay();
+            return View("DisplayLoginData", ViewBag);
+        }
     }
 
 }

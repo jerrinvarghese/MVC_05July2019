@@ -31,7 +31,7 @@ namespace MVC_Application1.Controllers
             {
                 if ((un == item.UserID) && (pwd == item.UserPassword))
                 {
-                    return RedirectToAction("HomePage");
+                    return RedirectToAction("DisplayLoginData","Home");
                 }
                 else
                 {
@@ -41,8 +41,9 @@ namespace MVC_Application1.Controllers
             return View();
         }
         
-        public ActionResult RegisterPage(FormCollection collection)
+        public ActionResult RegisterPage()
         {
+
             return View();
         }
         public ActionResult HomePage()
