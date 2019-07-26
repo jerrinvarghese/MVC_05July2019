@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace DAL.Repository
 {
     public class ItemRepository
@@ -29,6 +31,11 @@ namespace DAL.Repository
             return (loginListForDisplay);
         }
 
+        public void saveNewRegisterationData(RegisterNewUserViewModel registerNewUserViewModel)
+        {
+             
+        }
+
 
     }
     public class fetchingSpecificLoginData
@@ -39,4 +46,13 @@ namespace DAL.Repository
         public Nullable<System.DateTime> LastLogin { get; set; }
         public bool IsLocked { get; set; }
     }
+
+    public class RegisterNewUserModel
+    {
+        public string UserEmail { get; set; }
+        public string UserPassword { get; set; }
+        public string ConfirmPassword { get; set; }
+
+    }
+
 }

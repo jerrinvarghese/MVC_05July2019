@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVC_Application1.ViewModels;
 
 namespace MVC_Application1.Controllers
 {
@@ -43,9 +44,17 @@ namespace MVC_Application1.Controllers
         
         public ActionResult RegisterPage()
         {
-
+            RegisterNewUserViewModel registerNewUserViewModel = new RegisterNewUserViewModel();
+            return View(registerNewUserViewModel);
+        }
+        [HttpPost]
+        public ActionResult RegisterPage(RegisterNewUserViewModel registerNewUserViewModel)
+        {
+            ItemRepository itemrepository = new ItemRepository();
+            itemrepository.saveNewRegisterationData(registerNewUserViewModel);
             return View();
         }
+
         public ActionResult HomePage()
         {
             return View();

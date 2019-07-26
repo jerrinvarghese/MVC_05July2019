@@ -1,4 +1,6 @@
 ﻿
+@model MVC_Application1.ViewModels.RegisterNewUserViewModel
+
 @{
     ViewBag.Title = "RegisterPage";
 }
@@ -8,60 +10,70 @@ This is the registration page
 
 @Html.ActionLink("Back to Login page", "LoginPage")
 
-<div class="panel-body">
-    <form id="signupform" class="form-horizontal" role="form">
 
-        <div id="signupalert" style="display:none" class="alert alert-danger">
-            <p>Error:</p>
-            <span></span>
-        </div>
-
-
-
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="panel-body">
+        <div class="form-horizontal">
         <div class="form-group">
-            <label for="email" class="col-md-3 control-label">Email</label>
+            @Html.LabelFor(model => model.UserEmail, htmlAttributes: new
+       {
+           @class = "col-md-3 control-label"
+       })
             <div class="col-md-9">
-                <input type="text" class="form-control" name="email" placeholder="Email Address">
+                @Html.EditorFor(model => model.UserEmail, new
+           {
+               htmlAttributes = new
+               {
+                   @class = "form-control"
+               }
+           })
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="firstname" class="col-md-3 control-label">First Name</label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" name="firstname" placeholder="First Name">
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserPassword, htmlAttributes: new
+       {
+           @class = "col-md-3 control-label"
+       })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.UserPassword, new
+           {
+               htmlAttributes = new
+               {
+                   @class = "form-control"
+               }
+           })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-md-3 control-label">Last Name</label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new
+           {
+               @class = "col-md-3 control-label"
+           })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.ConfirmPassword, new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "form-control"
+                   }
+               })
+                </div>
             </div>
+
+    </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-9">
+            <input type="submit" value="Click Here To Register" class="btn btn-info"><i class="icon-hand-right"></i>
         </div>
-        <div class="form-group">
-            <label for="password" class="col-md-3 control-label">Password</label>
-            <div class="col-md-9">
-                <input type="password" class="form-control" name="passwd" placeholder="Password">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="icode" class="col-md-3 control-label">Invitation Code</label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" name="icode" placeholder="">
-            </div>
-        </div>
-        <div class="form-group">
-            <!-- Button -->
-            <div class="col-md-offset-3 col-md-9">
-                <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
-                
-            </div>
-        </div>
-
-        
+    </div>
+}
 
 
 
-    </form>
-</div>
+
+
+
 
