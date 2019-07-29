@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.ViewModels;
 
 
 
@@ -33,7 +34,15 @@ namespace DAL.Repository
 
         public void saveNewRegisterationData(RegisterNewUserViewModel registerNewUserViewModel)
         {
-             
+            tbl_Login saveNewRegistrationDataToDB = new tbl_Login();
+            saveNewRegistrationDataToDB.UserID = registerNewUserViewModel.UserEmail;
+            saveNewRegistrationDataToDB.UserEmail = registerNewUserViewModel.UserEmail;
+            saveNewRegistrationDataToDB.UserPassword = registerNewUserViewModel.UserPassword;
+            saveNewRegistrationDataToDB.IsActive=false;
+            saveNewRegistrationDataToDB.LoginAttempts=0;
+            saveNewRegistrationDataToDB.IsLocked=false;
+            context.tbl_Login.Add(saveNewRegistrationDataToDB);
+            context.SaveChanges();
         }
 
 
@@ -47,12 +56,5 @@ namespace DAL.Repository
         public bool IsLocked { get; set; }
     }
 
-    public class RegisterNewUserModel
-    {
-        public string UserEmail { get; set; }
-        public string UserPassword { get; set; }
-        public string ConfirmPassword { get; set; }
-
-    }
-
+    
 }

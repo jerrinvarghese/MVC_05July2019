@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MVC_Application1.ViewModels;
+using DAL.ViewModels;
 
 namespace MVC_Application1.Controllers
 {
     public class AccountController : Controller
     {
         // GET: Account
+        ItemRepository itemrepository = new ItemRepository();
         public ActionResult Index()
         {
             return View();
@@ -26,7 +27,7 @@ namespace MVC_Application1.Controllers
         {
             var un = collection["username"];
             var pwd = collection["password"];
-            ItemRepository itemrepository = new ItemRepository();
+            //ItemRepository itemrepository = new ItemRepository();
             List<tbl_Login> authenticatedUser = itemrepository.getLoginTableData();
             foreach (var item in authenticatedUser)
             {
@@ -50,7 +51,7 @@ namespace MVC_Application1.Controllers
         [HttpPost]
         public ActionResult RegisterPage(RegisterNewUserViewModel registerNewUserViewModel)
         {
-            ItemRepository itemrepository = new ItemRepository();
+            //ItemRepository itemrepository = new ItemRepository();
             itemrepository.saveNewRegisterationData(registerNewUserViewModel);
             return View();
         }
