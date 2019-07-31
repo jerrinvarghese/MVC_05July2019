@@ -175,6 +175,7 @@
     <Content Include="Views\Account\RegisterPage.cshtml" />
     <Content Include="Views\Account\HomePage.cshtml" />
     <Content Include="Views\Home\DisplayLoginData.cshtml" />
+    <Content Include="Views\Shared\LoginRegisterLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
