@@ -2,29 +2,104 @@
 @{
     ViewBag.Title = "DisplayLoginData";
 }
+<script src="~/scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$('.txtNewloginpasswordClass').hide();
+        //$('.saveRegisteredUserClass').hide();
+        //$('.cancelRegisteredUserClass').hide();
+        
+        $("body").on("click", "#tblUsers .editRegisteredUserClass", function () {
+            var row = $(this).closest("tr");
+            var oldPassword = row.find(".UserPasswordSpanClass").text();
+            row.find(".UserPasswordSpanClass").hide();
+            row.find(".txtNewloginpasswordClass").show();
+            row.find(".txtNewloginpasswordClass").val(oldPassword);
+            row.find(".saveRegisteredUserClass").show();
+            row.find(".cancelRegisteredUserClass").show();
+            $(this).hide();
+        });
 
+        $("body").on("click", "#tblUsers .cancelRegisteredUserClass", function () {
+            var row = $(this).closest("tr");
+            row.find(".txtNewloginpasswordClass").hide();
+            row.find(".UserPasswordSpanClass").show();
+            row.find(".saveRegisteredUserClass").hide();
+            $(this).hide();
+            row.find(".editRegisteredUserClass").show();999 
+        });
+
+        $("body").on("click", "#tblUsers .saveRegisteredUserClass", function () {
+            var row = $(this).closest("tr");
+            var userUpdatedData={};
+            userUpdatedData.UserPassword=row.find(".txtNewloginpasswordClass").val();
+            userUpdatedData.Sl_No = row.find(".UserSlNoClass").text();
+            var newPassword = row.find(".txtNewloginpasswordClass").val();
+            
+            $.ajax({
+                type: "POST",
+                url: "/Account/EditRegisteredUser",
+                data: '{userUpdatedData:' + JSON.stringify(userUpdatedData) + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == true) {
+                        row.find(".txtNewloginpasswordClass").hide();
+                        row.find(".UserPasswordSpanClass").show();
+                        row.find(".UserPasswordSpanClass").html(userUpdatedData.UserPassword);
+                        row.find(".saveRegisteredUserClass").hide();
+                        row.find(".cancelRegisteredUserClass").hide();
+                        row.find(".editRegisteredUserClass").show();
+                        $("#UpdateConfirmMessage").html("Updated successfully");
+                        //location.reload(true);
+                        //$("body").html(result);
+                    }
+                    else {
+                        $("#UpdateConfirmMessage").html(result);
+                    }
+                }
+            });
+        });
+
+    });
+</script>
 <h2>DisplayLoginData</h2>
-
-<table class="table table-condensed table-hover">
-    <thead>
-        <tr>
-            <th>User Id</th>
-            <th>User Password</th>
-            <th>Is Active</th>
-            <th>Last Login</th>
-            <th>Is Locked</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var users in ViewBag.loginDataListItems)
-        {
+<html>
+<body>
+    <table class="table table-condensed table-hover" id="tblUsers">
             <tr>
-                <td>@users.UserID</td>
-                <td>@users.UserPassword</td>
-                <td>@users.IsActive</td>
-                <td>@users.LastLogin</td>
-                <td>@users.IsLocked</td>
+                <th>User Id</th>
+                <th>User Password</th>
+                <th>Is Active</th>
+                <th>Last Login</th>
+                <th>Is Locked</th>
             </tr>
-        }
-    </tbody>
-</table>  
+        
+        
+            @foreach (var users in @ViewBag.loginDataListItems)
+            {
+                <tr>
+                    <td class="UserID">
+                        <span>@users.UserID</span>
+                        <span class="UserSlNoClass" style="display:none">@users.Sl_No</span>
+                    </td>
+                    <td class="UserPassword">
+                        <span class="UserPasswordSpanClass">@users.UserPassword</span>
+                        <input id="txtNewloginpassword" class="form-control txtNewloginpasswordClass" name="password" style="display:none">
+                    </td>
+                    <td>@users.IsActive</td>
+                    <td>@users.LastLogin</td>
+                    <td>@users.IsLocked</td>
+                    <td>
+                        <input id="editRegisteredUser" type="button" value="Click Here To Edit" class="btn btn-danger editRegisteredUserClass" />
+                        <span><input id="saveRegisteredUser" type="button" value="Save" class="btn btn-danger saveRegisteredUserClass" style="display:none"/></span>
+                        <span><input id="cancelRegisteredUser" type="button" value="Cancel" class="btn btn-danger cancelRegisteredUserClass" style="display:none"/></span>
+                    </td>
+                </tr>
+            }
+        
+    </table>
+    <div id="UpdateConfirmMessage"></div>
+</body>
+</html>
+

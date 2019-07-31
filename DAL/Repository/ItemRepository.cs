@@ -24,6 +24,7 @@ namespace DAL.Repository
             
             List<fetchingSpecificLoginData> loginListForDisplay = new List<fetchingSpecificLoginData>();
             loginListForDisplay = context.tbl_Login.Select(x => new fetchingSpecificLoginData {
+                Sl_No=x.Sl_No,
                 UserID=x.UserID,
                 UserPassword=x.UserPassword,
                 IsActive=x.IsActive,
@@ -45,10 +46,20 @@ namespace DAL.Repository
             context.SaveChanges();
         }
 
-
+        public bool EditUserRegistrationData(fetchingSpecificLoginData userUpdatedData)
+        {
+            bool flag=true;
+            tbl_Login newUpdatedData = context.tbl_Login.Where(x=>x.Sl_No==userUpdatedData.Sl_No).FirstOrDefault();
+            newUpdatedData.UserPassword = userUpdatedData.UserPassword;
+            context.SaveChanges();
+            return flag;
+        }
     }
+
+
     public class fetchingSpecificLoginData
     {
+        public int Sl_No { get; set; }
         public string UserID { get; set; }
         public string UserPassword { get; set; }
         public bool IsActive { get; set; }

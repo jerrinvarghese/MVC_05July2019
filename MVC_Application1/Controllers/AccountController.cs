@@ -55,6 +55,21 @@ namespace MVC_Application1.Controllers
             itemrepository.saveNewRegisterationData(registerNewUserViewModel);
             return View();
         }
+        [HttpPost]
+        public ActionResult EditRegisteredUser(fetchingSpecificLoginData userUpdatedData)
+        {
+            bool flag = true;
+            itemrepository.EditUserRegistrationData(userUpdatedData);
+            if(flag==false)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            
+        }
 
         public ActionResult HomePage()
         {
